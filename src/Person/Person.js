@@ -5,9 +5,9 @@ class Person extends Component
  
     render( props){
        return(
-            <div>
-                <p>Name is {this.props.name}</p>
-                <p>Age is {this.props.age}</p>
+            <div onClick={this.props.click} className="person">
+                <h1>{this.props.name}</h1>
+                <p>Age : {this.props.age}</p>
             </div>
 
        )};

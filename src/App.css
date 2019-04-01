@@ -31,3 +31,15 @@
     transform: rotate(360deg);
   }
 }
+
+.person
+{
+  display: inline-block;
+  padding: 25px;
+  margin: 10px;
+  box-shadow: 3px 3px grey;
+  border-radius: 10px;
+  border: 1px solid gray;
+  cursor: hand;
+  min-width: 100px;
+}
