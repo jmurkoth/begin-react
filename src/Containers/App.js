@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person';
-import UserInput from './UserInput/UserInput';
-import UserOutput from  './UserOutput/UserOutput';
-import ValidateComponent from './ValidateComponent/ValidateComponent';
-import CharComponent from './CharComponent/CharComponent';
+import Person from '../Components/Persons/Person/Person';
+import UserInput from '../Components/UserInput/UserInput';
+import UserOutput from  '../Components/UserOutput/UserOutput';
+import ValidateComponent from '../Components/ValidateComponent/ValidateComponent';
+import CharComponent from '../Components/CharComponent/CharComponent';
 
 class App extends Component {
 
-  state= {counter:1,username:'Please enter your user name', userInput:''};
+  state= {counter:1,username:'Please enter your user name', userInput:'', showPeople:true };
 
   onClick=(value)=>{
     this.setState({
@@ -24,18 +24,29 @@ class App extends Component {
   }
   deleteHandler=(index)=>{
     var textArray = this.state.userInput.split('');
-    console.log('clicked at index :' + index);
     textArray.splice(index,1);
     const updatedText =textArray.join('');
     this.setState({userInput:updatedText})
 
   }
+  togglePersonHandler=()=>{
+    this.setState({showPeople: !this.state.showPeople});
+  }
   render() {
-
+    let btnClass ='';
+    let personList=null;
+    var people= [{ name:'Thomas', age:70},{name:'Brian', age:45}];
+           
     var charList = this.state.userInput.split('').map((value, index)=>{
-      return <CharComponent text={value}  key={index} deleteHandler={()=>this.deleteHandler(index)}/> ;
-  });
+                    return <CharComponent text={value}  key={index} deleteHandler={()=>this.deleteHandler(index)}/> ;
+                    });
+    if(this.state.showPeople)
+    {
+      personList = ( people.map((p)=>{return  <Person name={p.name} age={p.age}  />;}));
 
+    }
+ 
+   
     return (
       <div className="App">
             <div>
@@ -59,7 +70,15 @@ class App extends Component {
               {charList}
             
             </div>
-       
+            <div>
+              <h2>CSS Module</h2>
+              <button 
+              className={btnClass}
+              onClick={this.togglePersonHandler}>Toggle</button>
+              <div>
+                {personList} 
+              </div>
+            </div>
          
       </div>
      
