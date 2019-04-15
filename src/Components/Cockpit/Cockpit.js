@@ -5,7 +5,7 @@ import Persons from '../Persons/Persons';
 import UserInput from '../UserInput/UserInput';
 import UserOutput from  '../UserOutput/UserOutput';
 import CharComponent from '../CharComponent/CharComponent';
-
+import Aux from '../hoc/Auxilliary';
 class Cockpit extends Component
 {
 
@@ -26,38 +26,39 @@ class Cockpit extends Component
         }
 
         return(
-            <div>
-            <div>
-                <Person name='Jeevan' age='40' click={()=>this.props.click(this.props.counter+1)} />
-                <Person name ='Jack' age='39' click={()=>this.props.click(this.props.counter+1)}  />
-            <div> Click Counter: {this.props.counter}</div>
-            </div>
-          {/* First Assignment*/}
-          <div>
-          <h2>Assignment 1</h2>
-          <UserInput  change={this.props.changeUserName} username={this.props.username}/>
-          <UserOutput username={this.props.username}/>
-          <UserOutput  username="Tim-Should not change"/>
-          </div>
-          {/* Second Assignment*/}
-          <div>
-            <h2>Assignment 2</h2>
-            <input type="text" onChange={this.props.asgn2Change} value={this.props.userInput}/>
-            <p>{this.props.userInput.length}</p>
-            <ValidateComponent textLength={this.props.userInput.length} />
-            {charList}
-          
-          </div>
-          <div>
-            <h2>CSS Module</h2>
-            <button 
-            className={btnClass}
-            onClick={this.props.cssClick}>Toggle</button>
-            <div>
-              {personList} 
-            </div>
-          </div>
-          </div>
+      
+            <Aux>
+              <div>
+                  <Person name='Jeevan' age='40' click={()=>this.props.click(this.props.counter+1)} />
+                  <Person name ='Jack' age='39' click={()=>this.props.click(this.props.counter+1)}  />
+              <div> Click Counter: {this.props.counter}</div>
+              </div>
+              {/* First Assignment*/}
+              <div>
+                <h2>Assignment 1</h2>
+                <UserInput  change={this.props.changeUserName} username={this.props.username}/>
+                <UserOutput username={this.props.username}/>
+                <UserOutput  username="Tim-Should not change"/>
+              </div>
+              {/* Second Assignment*/}
+              <div>
+                <h2>Assignment 2</h2>
+                <input type="text" onChange={this.props.asgn2Change} value={this.props.userInput}/>
+                <p>{this.props.userInput.length}</p>
+                <ValidateComponent textLength={this.props.userInput.length} />
+                {charList}
+              
+              </div>
+              <div>
+                <h2>CSS Module</h2>
+                <button 
+                className={btnClass}
+                onClick={this.props.cssClick}>Toggle</button>
+                <div>
+                  {personList} 
+                </div>
+              </div>
+          </Aux>
         )
     }
 }
